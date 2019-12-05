@@ -10,4 +10,4 @@
 
 This addon uses a file-based IPC to communicate with Zamok. The addon will write "true" or "false" to the `.dat` file while Zamok will monitor that file for changes and update it's state accordingly.
 
-File Location: `%LOCALAPPDATA%/ZamokNVDA.dat`
+File Location: `%LOCALAPPDATA%/zamok-browser-shell/User Data/Default/Zamok/ZamokNVDA.dat`
