@@ -17,7 +17,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
         curSpeechMode = speech.speechMode
 
         if curSpeechMode == speech.speechMode_talk:
-            msg.message("Sleep mode activated.  Goodbye.")
+##            msg.message("Sleep mode activated.  Goodbye.")
             speech.speechMode = speech.speechMode_off
             keyboardHandler.passKeyThroughCount = 0  # turn on key passthru
             nodeIPC.letZamokKnow("false")
@@ -25,28 +25,28 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
         elif curSpeechMode == speech.speechMode_off:
             speech.speechMode = speech.speechMode_talk
             keyboardHandler.passKeyThroughCount = -1  # turn off key passthru, set back to default (bug)
-            msg.message("Hello. Advanced kiosk speech activated.")
+##            msg.message("Hello. Advanced kiosks speech activated.")
             nodeIPC.letZamokKnow("true")
 
     def script_sayStuff(self, gesture): 
         curSpeechMode = speech.speechMode
         
         if curSpeechMode == speech.speechMode_talk:
-            if gesture.displayName == "alt+shift+8":
+            if gesture.displayName == "alt+*":
                 starDigit = "*"
-                starMsg = starDigit + " key selected."
+                starMsg = starDigit + " key."
                 msg.message(starMsg)
                 print(starMsg)
 
-            elif gesture.displayName == "alt+shift+3":
+            elif gesture.displayName == "alt+#":
                 poundDigit = "#"
-                poundMsg = poundDigit + " key selected."
+                poundMsg = poundDigit + " key."
                 msg.message(poundMsg)
                 print(poundMsg)
 
             else:
                 digit = gesture.displayName[-1]
-                numMsg = "Number " + digit + " selected."
+                numMsg = digit
                 msg.message(numMsg)
                 print(numMsg)
 
@@ -69,7 +69,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
         "kb:ALT+7": "sayStuff",
         "kb:ALT+8": "sayStuff",
         "kb:ALT+9": "sayStuff",
-        "kb:ALT+SHIFT+8": "sayStuff",
-        "kb:ALT+SHIFT+3": "sayStuff",
+        "kb:ALT+*": "sayStuff",
+        "kb:ALT+#": "sayStuff",
         "kb:ALT+J": "setDefaultRate",
     }
